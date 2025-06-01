@@ -1,2 +1,7 @@
 # StyleBase
-Project for DB class: Simple application, to organize your closet. 
+
+A new Flutter project.
+
+## Getting Started
+
+FlutterFlow projects are built to run on the Flutter _stable_ release.
