@@ -1,3 +1,6 @@
+import 'package:style_base/flutter_flow/flutter_flow_icon_button.dart';
+import 'package:style_base/pages/action_start/action_start_widget.dart';
+
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -36,7 +39,6 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
@@ -56,7 +58,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
             width: MediaQuery.sizeOf(context).width * 1.0,
             height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
-              color: Color(0x4D39B3D2),
+              color: FlutterFlowTheme.of(context).accent2,
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: Image.asset(
@@ -74,841 +76,388 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                     sigmaY: 10.0,
                   ),
                   child: Container(
-                    width: MediaQuery.sizeOf(context).width * 0.85,
-                    height: MediaQuery.sizeOf(context).height * 0.85,
+                    width: MediaQuery.sizeOf(context).width * 0.75,
+                    height: MediaQuery.sizeOf(context).height * 0.75,
                     decoration: BoxDecoration(
                       color: Color(0x22FFFFFF),
                       borderRadius: BorderRadius.circular(22.0),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                    child: Stack(
                       children: [
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      390.0, 30.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Add clothing item',
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayLarge
-                                        .override(
-                                          font: GoogleFonts.interTight(
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .displayLarge
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 35.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .displayLarge
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 40.0, 60.0, 0.0),
-                                child: FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
-                                  },
-                                  text: 'SUBMIT\n',
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: Color(0xFFD139EF),
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                      font: GoogleFonts.interTight(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontStyle,
-                                      ),
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                      shadows: [
-                                        Shadow(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          offset: Offset(2.0, 2.0),
-                                          blurRadius: 2.0,
-                                        )
-                                      ],
-                                    ),
-                                    elevation: 0.0,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 20.0, 0.0, 0.0),
-                              child: Container(
-                                width: MediaQuery.sizeOf(context).width * 0.7,
-                                height: MediaQuery.sizeOf(context).height * 0.1,
-                                decoration: BoxDecoration(),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
+                        SingleChildScrollView(
+                          child: Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
-                                      child: Text(
-                                        'Name',
-                                        textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 28.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 20.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        child: TextFormField(
-                                          controller: _model.textController,
-                                          focusNode: _model.textFieldFocusNode,
-                                          autofocus: false,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            isDense: true,
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      font: GoogleFonts.inter(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      fontSize: 20.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .fontStyle,
-                                                    ),
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      font: GoogleFonts.inter(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .fontStyle,
-                                                    ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            filled: true,
-                                            fillColor: Color(0x29FFFFFF),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                          cursorColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          validator: _model
-                                              .textControllerValidator
-                                              .asValidator(context),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 30.0, 0.0, 0.0),
-                              child: Container(
-                                width: MediaQuery.sizeOf(context).width * 0.7,
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.15,
-                                decoration: BoxDecoration(),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 1.0),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 10.0),
+                                            30.0, 0.0, 0.0, 0.0),
+                                        child: FlutterFlowIconButton(
+                                          borderRadius: 8.0,
+                                          buttonSize: 50.0,
+                                          icon: Icon(
+                                            Icons.arrow_back,
+                                            color: FlutterFlowTheme.of(context)
+                                                .info,
+                                            size: 45.0,
+                                          ),
+                                          onPressed: () {
+                                            context.pushNamed(
+                                                ActionStartWidget.routeName);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            30.0, 30.0, 0.0, 0.0),
                                         child: Text(
-                                          'Season',
+                                          'Add clothing item',
                                           style: FlutterFlowTheme.of(context)
-                                              .headlineMedium
+                                              .displayLarge
                                               .override(
                                                 font: GoogleFonts.interTight(
                                                   fontWeight: FontWeight.normal,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .headlineMedium
+                                                          .displayLarge
                                                           .fontStyle,
                                                 ),
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
+                                                fontSize: 35.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.normal,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .headlineMedium
+                                                        .displayLarge
                                                         .fontStyle,
                                               ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: FlutterFlowChoiceChips(
-                                        options: [
-                                          ChipData('Summer'),
-                                          ChipData('Fall'),
-                                          ChipData('Winter'),
-                                          ChipData('Spring')
-                                        ],
-                                        onChanged: (val) => safeSetState(() =>
-                                            _model.choiceChipsValues1 = val),
-                                        selectedChipStyle: ChipStyle(
-                                          backgroundColor: Color(0xB2E8B9FF),
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                                lineHeight: 1.5,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context).info,
-                                          iconSize: 20.0,
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                    FFButtonWidget(
+                                      onPressed: () {
+                                        print('Button pressed ...');
+                                      },
+                                      text: 'SUBMIT',
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        color: Color(0xFFD139EF),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                          font: GoogleFonts.interTight(),
+                                          color: Colors.white,
+                                          shadows: [
+                                            Shadow(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              offset: Offset(2.0, 2.0),
+                                              blurRadius: 2.0,
+                                            )
+                                          ],
                                         ),
-                                        unselectedChipStyle: ChipStyle(
-                                          backgroundColor: Color(0x2ACBAFDB),
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                                lineHeight: 1.5,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          iconSize: 16.0,
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        chipSpacing: 25.0,
-                                        multiselect: true,
-                                        initialized:
-                                            _model.choiceChipsValues1 != null,
-                                        alignment: WrapAlignment.start,
-                                        controller: _model
-                                                .choiceChipsValueController1 ??=
-                                            FormFieldController<List<String>>(
-                                          [],
-                                        ),
-                                        wrapped: true,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.sizeOf(context).width * 0.7,
-                              height: MediaQuery.sizeOf(context).height * 0.15,
-                              decoration: BoxDecoration(),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 10.0),
-                                    child: Text(
-                                      'Category',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 28.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: FlutterFlowChoiceChips(
-                                      options: [
-                                        ChipData('Casual wear'),
-                                        ChipData('Traditional wear'),
-                                        ChipData('Formal wear'),
-                                        ChipData('Sports wear')
-                                      ],
-                                      onChanged: (val) => safeSetState(() =>
-                                          _model.choiceChipsValues2 = val),
-                                      selectedChipStyle: ChipStyle(
-                                        backgroundColor: Color(0xB2E8B9FF),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w300,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                              lineHeight: 1.5,
-                                            ),
-                                        iconColor:
-                                            FlutterFlowTheme.of(context).info,
-                                        iconSize: 20.0,
-                                        elevation: 0.0,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      unselectedChipStyle: ChipStyle(
-                                        backgroundColor: Color(0x2ACBAFDB),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w300,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                              lineHeight: 1.5,
-                                            ),
-                                        iconColor: FlutterFlowTheme.of(context)
+                                SizedBox(height: 30),
+                                // Name Field
+                                Text(
+                                  'Name',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        iconSize: 16.0,
-                                        labelPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 5.0),
-                                        elevation: 0.0,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                        fontSize: 28.0,
                                       ),
-                                      chipSpacing: 25.0,
-                                      rowSpacing: 8.0,
-                                      multiselect: true,
-                                      initialized:
-                                          _model.choiceChipsValues2 != null,
-                                      alignment: WrapAlignment.start,
-                                      controller:
-                                          _model.choiceChipsValueController2 ??=
-                                              FormFieldController<List<String>>(
-                                        [],
-                                      ),
-                                      wrapped: true,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.sizeOf(context).width * 0.7,
-                              height: MediaQuery.sizeOf(context).height * 0.15,
-                              decoration: BoxDecoration(),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 10.0),
-                                      child: Text(
-                                        'Type',
-                                        textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 28.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: FlutterFlowChoiceChips(
-                                        options: [
-                                          ChipData('Shirts'),
-                                          ChipData('Pants'),
-                                          ChipData('Skirts'),
-                                          ChipData('Dresses'),
-                                          ChipData('jackets')
-                                        ],
-                                        onChanged: (val) => safeSetState(() =>
-                                            _model.choiceChipsValues3 = val),
-                                        selectedChipStyle: ChipStyle(
-                                          backgroundColor: Color(0xB2E8B9FF),
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                                lineHeight: 1.5,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context).info,
-                                          iconSize: 20.0,
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        unselectedChipStyle: ChipStyle(
-                                          backgroundColor: Color(0x2ACBAFDB),
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                fontSize: 20.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                                lineHeight: 1.5,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          iconSize: 16.0,
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        chipSpacing: 25.0,
-                                        rowSpacing: 8.0,
-                                        multiselect: true,
-                                        initialized:
-                                            _model.choiceChipsValues3 != null,
-                                        alignment: WrapAlignment.start,
-                                        controller: _model
-                                                .choiceChipsValueController3 ??=
-                                            FormFieldController<List<String>>(
-                                          [],
-                                        ),
-                                        wrapped: true,
-                                      ),
-                                    ),
-                                  ],
                                 ),
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.sizeOf(context).width * 0.7,
-                              height: MediaQuery.sizeOf(context).height * 0.15,
-                              decoration: BoxDecoration(),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 10.0),
-                                    child: Text(
-                                      'Color',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 28.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
+                                SizedBox(height: 10),
+                                TextFormField(
+                                  controller: _model.textController,
+                                  focusNode: _model.textFieldFocusNode,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Color(0x29FFFFFF),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      borderSide: BorderSide.none,
                                     ),
                                   ),
-                                  Expanded(
-                                    child: FlutterFlowChoiceChips(
-                                      options: [
-                                        ChipData('Red'),
-                                        ChipData('Black'),
-                                        ChipData('Blue'),
-                                        ChipData('White'),
-                                        ChipData('Green'),
-                                        ChipData('Yellow')
-                                      ],
-                                      onChanged: (val) => safeSetState(() =>
-                                          _model.choiceChipsValues4 = val),
-                                      selectedChipStyle: ChipStyle(
-                                        backgroundColor: Color(0xB2E8B9FF),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w300,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                              lineHeight: 1.5,
-                                            ),
-                                        iconColor:
-                                            FlutterFlowTheme.of(context).info,
-                                        iconSize: 20.0,
-                                        elevation: 0.0,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      unselectedChipStyle: ChipStyle(
-                                        backgroundColor: Color(0x2ACBAFDB),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w300,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                              lineHeight: 1.5,
-                                            ),
-                                        iconColor: FlutterFlowTheme.of(context)
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        iconSize: 16.0,
-                                        elevation: 0.0,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                        fontSize: 20.0,
                                       ),
-                                      chipSpacing: 25.0,
-                                      rowSpacing: 8.0,
-                                      multiselect: true,
-                                      initialized:
-                                          _model.choiceChipsValues4 != null,
-                                      alignment: WrapAlignment.start,
-                                      controller:
-                                          _model.choiceChipsValueController4 ??=
-                                              FormFieldController<List<String>>(
-                                        [],
+                                ),
+                                SizedBox(height: 30),
+                                // Season Chips
+                                Text(
+                                  'Season',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 28.0,
                                       ),
-                                      wrapped: true,
-                                    ),
+                                ),
+                                SizedBox(height: 10),
+                                FlutterFlowChoiceChips(
+                                  options: [
+                                    ChipData('Summer'),
+                                    ChipData('Fall'),
+                                    ChipData('Winter'),
+                                    ChipData('Spring')
+                                  ],
+                                  onChanged: (val) =>
+                                      _model.choiceChipsValues1 = val,
+                                  selectedChipStyle: ChipStyle(
+                                    backgroundColor: Color(0xB2E8B9FF),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 20.0,
+                                        ),
                                   ),
-                                ],
-                              ),
+                                  unselectedChipStyle: ChipStyle(
+                                    backgroundColor: Color(0x2ACBAFDB),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 20.0,
+                                        ),
+                                  ),
+                                  chipSpacing: 25.0,
+                                  multiselect: true,
+                                  controller:
+                                      _model.choiceChipsValueController1 ??=
+                                          FormFieldController<List<String>>([]),
+                                  wrapped: true,
+                                ),
+                                SizedBox(height: 30),
+                                // Color Chips
+                                Text(
+                                  'Color',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 28.0,
+                                      ),
+                                ),
+                                SizedBox(height: 10),
+                                FlutterFlowChoiceChips(
+                                  options: [
+                                    ChipData('Red'),
+                                    ChipData('Blue'),
+                                    ChipData('Black'),
+                                    ChipData('White'),
+                                    ChipData('Green'),
+                                    ChipData('Yellow')
+                                  ],
+                                  onChanged: (val) =>
+                                      _model.choiceChipsValues1 = val,
+                                  selectedChipStyle: ChipStyle(
+                                    backgroundColor: Color(0xB2E8B9FF),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 20.0,
+                                        ),
+                                  ),
+                                  unselectedChipStyle: ChipStyle(
+                                    backgroundColor: Color(0x2ACBAFDB),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 20.0,
+                                        ),
+                                  ),
+                                  chipSpacing: 25.0,
+                                  multiselect: true,
+                                  controller:
+                                      _model.choiceChipsValueController1 ??=
+                                          FormFieldController<List<String>>([]),
+                                  wrapped: true,
+                                ),
+
+                                SizedBox(height: 30),
+                                // Type Chips
+                                Text(
+                                  'Type',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 28.0,
+                                      ),
+                                ),
+                                SizedBox(height: 10),
+                                FlutterFlowChoiceChips(
+                                  options: [
+                                    ChipData('Shirts'),
+                                    ChipData('Pants'),
+                                    ChipData('Skirts'),
+                                    ChipData('Dresses'),
+                                    ChipData('Jackets')
+                                  ],
+                                  onChanged: (val) =>
+                                      _model.choiceChipsValues1 = val,
+                                  selectedChipStyle: ChipStyle(
+                                    backgroundColor: Color(0xB2E8B9FF),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 20.0,
+                                        ),
+                                  ),
+                                  unselectedChipStyle: ChipStyle(
+                                    backgroundColor: Color(0x2ACBAFDB),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 20.0,
+                                        ),
+                                  ),
+                                  chipSpacing: 25.0,
+                                  multiselect: true,
+                                  controller:
+                                      _model.choiceChipsValueController1 ??=
+                                          FormFieldController<List<String>>([]),
+                                  wrapped: true,
+                                ),
+
+                                SizedBox(height: 30),
+                                // Category Chips
+                                Text(
+                                  'Category',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 28.0,
+                                      ),
+                                ),
+                                SizedBox(height: 10),
+                                FlutterFlowChoiceChips(
+                                  options: [
+                                    ChipData('Casual wear'),
+                                    ChipData('Traditional wear'),
+                                    ChipData('Formal wear'),
+                                    ChipData('Sports wear')
+                                  ],
+                                  onChanged: (val) =>
+                                      _model.choiceChipsValues1 = val,
+                                  selectedChipStyle: ChipStyle(
+                                    backgroundColor: Color(0xB2E8B9FF),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 20.0,
+                                        ),
+                                  ),
+                                  unselectedChipStyle: ChipStyle(
+                                    backgroundColor: Color(0x2ACBAFDB),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          fontSize: 20.0,
+                                        ),
+                                  ),
+                                  chipSpacing: 25.0,
+                                  multiselect: true,
+                                  controller:
+                                      _model.choiceChipsValueController1 ??=
+                                          FormFieldController<List<String>>([]),
+                                  wrapped: true,
+                                ),
+                                //---
+                              ],
                             ),
-                          ].addToStart(SizedBox(height: 0.0)),
+                          ),
                         ),
                       ],
                     ),

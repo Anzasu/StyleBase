@@ -1,3 +1,5 @@
+import 'package:style_base/pages/action_start/action_start_widget.dart';
+
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -76,79 +78,82 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                       color: Color(0x22FFFFFF),
                       borderRadius: BorderRadius.circular(22.0),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                    child: Stack(
                       children: [
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 1.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      45.0, 0.0, 0.0, 0.0),
-                                  child: FlutterFlowIconButton(
-                                    borderRadius: 8.0,
-                                    buttonSize: 50.0,
-                                    icon: Icon(
-                                      Icons.arrow_back,
-                                      color: FlutterFlowTheme.of(context).info,
-                                      size: 45.0,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      450.0, 30.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Closet Filters',
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayLarge
-                                        .override(
-                                          font: GoogleFonts.interTight(
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .displayLarge
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 35.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .displayLarge
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                         SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 1.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Align(
+                                      alignment: AlignmentDirectional(0.0, 1.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            45.0, 0.0, 0.0, 0.0),
+                                        child: FlutterFlowIconButton(
+                                          borderRadius: 8.0,
+                                          buttonSize: 50.0,
+                                          icon: Icon(
+                                            Icons.arrow_back,
+                                            color: FlutterFlowTheme.of(context)
+                                                .info,
+                                            size: 45.0,
+                                          ),
+                                          onPressed: () {
+                                            context.pushNamed(
+                                                ActionStartWidget.routeName);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            450.0, 30.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Closet Filters',
+                                          style: FlutterFlowTheme.of(context)
+                                              .displayLarge
+                                              .override(
+                                                font: GoogleFonts.interTight(
+                                                  fontWeight: FontWeight.normal,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displayLarge
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 35.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLarge
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 40.0, 0.0, 0.0),
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.sizeOf(context).height * 0.15,
+                                      MediaQuery.sizeOf(context).height * 0.17,
                                   decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -413,7 +418,7 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.sizeOf(context).height * 0.15,
+                                      MediaQuery.sizeOf(context).height * 0.17,
                                   decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -782,7 +787,7 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.sizeOf(context).height * 0.15,
+                                      MediaQuery.sizeOf(context).height * 0.17,
                                   decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1150,7 +1155,7 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.sizeOf(context).height * 0.15,
+                                      MediaQuery.sizeOf(context).height * 0.17,
                                   decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
