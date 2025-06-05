@@ -20,6 +20,8 @@ class OverviewCategoryWidget extends StatefulWidget {
 class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
   late OverviewCategoryModel _model;
 
+  int count = 0;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -139,7 +141,9 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
-                          children: [],
+                          children: [
+                            getItemsListView(),
+                          ],
                         ),
                       ],
                     ),
@@ -151,5 +155,40 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
         ),
       ),
     );
+  }
+
+  getItemsListView() {
+    return ListView.builder(
+        itemCount: count,
+        itemBuilder: (BuildContext context, int position) {
+          return Container(
+            width: MediaQuery.sizeOf(context).width * 0.85,
+            height: MediaQuery.sizeOf(context).height * 0.85,
+            decoration: BoxDecoration(
+              color: Color(0x22FFFFFF),
+              borderRadius: BorderRadius.circular(22.0),
+            ),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Color(0x22FFFFFF),
+                child: Icon(Icons.edit),
+              ),
+              title: Text(
+                'Dummy Title',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      font: GoogleFonts.inter(
+                        fontWeight: FontWeight.normal,
+                      ),
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      fontSize: 28.0,
+                    ),
+              ),
+              trailing: Icon(Icons.delete_forever),
+              onTap: () {
+                debugPrint("tapped");
+              },
+            ),
+          );
+        });
   }
 }

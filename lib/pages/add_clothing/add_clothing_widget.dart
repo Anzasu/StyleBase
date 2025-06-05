@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'add_clothing_model.dart';
 export 'add_clothing_model.dart';
+import 'package:sqflite/sqflite.dart';
 
 class AddClothingWidget extends StatefulWidget {
   const AddClothingWidget({super.key});
@@ -77,7 +78,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                   ),
                   child: Container(
                     width: MediaQuery.sizeOf(context).width * 0.75,
-                    height: MediaQuery.sizeOf(context).height * 0.75,
+                    height: MediaQuery.sizeOf(context).height * 0.85,
                     decoration: BoxDecoration(
                       color: Color(0x22FFFFFF),
                       borderRadius: BorderRadius.circular(22.0),
