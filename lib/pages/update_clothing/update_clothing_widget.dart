@@ -1,3 +1,4 @@
+import 'package:style_base/backend/globals.dart';
 import 'package:style_base/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:style_base/pages/action_start/action_start_widget.dart';
 
@@ -13,26 +14,25 @@ import 'update_clothing_model.dart';
 export 'update_clothing_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-class AddClothingWidget extends StatefulWidget {
-  const AddClothingWidget({super.key});
+class UpdateClothingWidget extends StatefulWidget {
+  const UpdateClothingWidget({super.key});
 
-  static String routeName = 'AddClothing';
-  static String routePath = '/addClothing';
+  static String routeName = 'UpdateClothing';
+  static String routePath = '/updateClothing';
 
   @override
-  State<AddClothingWidget> createState() => _AddClothingWidgetState();
+  State<UpdateClothingWidget> createState() => _UpdateClothingWidgetState();
 }
 
-class _AddClothingWidgetState extends State<AddClothingWidget> {
-  late AddClothingModel _model;
+class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
+  late UpdateClothingModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AddClothingModel());
-
+    _model = createModel(context, () => UpdateClothingModel());
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -123,7 +123,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             30.0, 30.0, 0.0, 0.0),
                                         child: Text(
-                                          'Add clothing item',
+                                          'Update clothing item',
                                           style: FlutterFlowTheme.of(context)
                                               .displayLarge
                                               .override(
@@ -153,7 +153,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                       onPressed: () {
                                         print('Button pressed ...');
                                       },
-                                      text: 'SUBMIT',
+                                      text: 'UPDATE',
                                       options: FFButtonOptions(
                                         height: 40.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -197,6 +197,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                 ),
                                 SizedBox(height: 10),
                                 TextFormField(
+                                  initialValue: currentName,
                                   controller: _model.textController,
                                   focusNode: _model.textFieldFocusNode,
                                   decoration: InputDecoration(
@@ -219,7 +220,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                       ),
                                 ),
                                 SizedBox(height: 30),
-                                // Season Chips
+                                // ************* Season *******************************
                                 Text(
                                   'Season',
                                   style: FlutterFlowTheme.of(context)
@@ -277,7 +278,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                   wrapped: true,
                                 ),
                                 SizedBox(height: 30),
-                                // Color Chips
+                                // **************** Color *******************
                                 Text(
                                   'Color',
                                   style: FlutterFlowTheme.of(context)
@@ -338,7 +339,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                 ),
 
                                 SizedBox(height: 30),
-                                // Type Chips
+                                // *********************** Type ************************
                                 Text(
                                   'Type',
                                   style: FlutterFlowTheme.of(context)
@@ -398,7 +399,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                 ),
 
                                 SizedBox(height: 30),
-                                // Category Chips
+                                // *************** Category ********************
                                 Text(
                                   'Category',
                                   style: FlutterFlowTheme.of(context)
@@ -455,7 +456,6 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),
-                                //---
                               ],
                             ),
                           ),

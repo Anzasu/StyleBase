@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'update_clothing_widget.dart' show AddClothingWidget;
+import 'update_clothing_widget.dart' show UpdateClothingWidget;
 import 'package:flutter/material.dart';
 
-class AddClothingModel extends FlutterFlowModel<AddClothingWidget> {
+class UpdateClothingModel extends FlutterFlowModel<UpdateClothingWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.

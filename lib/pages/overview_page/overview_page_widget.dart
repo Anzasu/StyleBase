@@ -1,3 +1,5 @@
+import 'package:style_base/backend/globals.dart';
+import 'package:style_base/index.dart';
 import 'package:style_base/pages/action_start/action_start_widget.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -204,8 +206,13 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     50.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Casual pressed ...');
+                                                filterCasual = true;
+                                                filterFormal = false;
+                                                filterTraditional = false;
+                                                filterSports = false;
+                                                context.pushNamed(
+                                                    OverviewCategoryWidget
+                                                        .routeName);
                                               },
                                               text: 'Casual wear',
                                               options: FFButtonOptions(
@@ -256,8 +263,13 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Pants pressed ...');
+                                                filterCasual = false;
+                                                filterFormal = false;
+                                                filterTraditional = true;
+                                                filterSports = false;
+                                                context.pushNamed(
+                                                    OverviewCategoryWidget
+                                                        .routeName);
                                               },
                                               text: 'Traditional wear',
                                               options: FFButtonOptions(
@@ -308,8 +320,13 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Formal pressed ...');
+                                                filterCasual = false;
+                                                filterFormal = true;
+                                                filterTraditional = false;
+                                                filterSports = false;
+                                                context.pushNamed(
+                                                    OverviewCategoryWidget
+                                                        .routeName);
                                               },
                                               text: 'Formal wear',
                                               options: FFButtonOptions(
@@ -360,8 +377,13 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Sport pressed ...');
+                                                filterCasual = false;
+                                                filterFormal = false;
+                                                filterTraditional = false;
+                                                filterSports = true;
+                                                context.pushNamed(
+                                                    OverviewCategoryWidget
+                                                        .routeName);
                                               },
                                               text: 'Sports wear',
                                               options: FFButtonOptions(
@@ -469,8 +491,14 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     50.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_TShirt pressed ...');
+                                                filterShirts = true;
+                                                filterPants = false;
+                                                filterSkirts = false;
+                                                filterDresses = false;
+                                                filterJackets = false;
+                                                context.pushNamed(
+                                                    OverviewTypeWidget
+                                                        .routeName);
                                               },
                                               text: 'Shirts',
                                               options: FFButtonOptions(
@@ -521,8 +549,14 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Pants pressed ...');
+                                                filterShirts = false;
+                                                filterPants = true;
+                                                filterSkirts = false;
+                                                filterDresses = false;
+                                                filterJackets = false;
+                                                context.pushNamed(
+                                                    OverviewTypeWidget
+                                                        .routeName);
                                               },
                                               text: 'Pants',
                                               options: FFButtonOptions(
@@ -573,8 +607,14 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Skirts pressed ...');
+                                                filterShirts = false;
+                                                filterPants = false;
+                                                filterSkirts = true;
+                                                filterDresses = false;
+                                                filterJackets = false;
+                                                context.pushNamed(
+                                                    OverviewTypeWidget
+                                                        .routeName);
                                               },
                                               text: 'Skirts',
                                               options: FFButtonOptions(
@@ -625,8 +665,14 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Dresses pressed ...');
+                                                filterShirts = false;
+                                                filterPants = false;
+                                                filterSkirts = false;
+                                                filterDresses = true;
+                                                filterJackets = false;
+                                                context.pushNamed(
+                                                    OverviewTypeWidget
+                                                        .routeName);
                                               },
                                               text: 'Dresses',
                                               options: FFButtonOptions(
@@ -677,62 +723,16 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Jackets pressed ...');
+                                                filterShirts = false;
+                                                filterPants = false;
+                                                filterSkirts = false;
+                                                filterDresses = false;
+                                                filterJackets = true;
+                                                context.pushNamed(
+                                                    OverviewTypeWidget
+                                                        .routeName);
                                               },
                                               text: 'Jackets',
-                                              options: FFButtonOptions(
-                                                height: 40.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 16.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color: Color(0x2ACBAFDB),
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleLarge
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .interTight(
-                                                            fontWeight:
-                                                                FontWeight.w300,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleLarge
-                                                                  .fontStyle,
-                                                        ),
-                                                elevation: 0.0,
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    30.0, 0.0, 0.0, 0.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () {
-                                                print(
-                                                    'Button_Shoes pressed ...');
-                                              },
-                                              text: 'Yellow',
                                               options: FFButtonOptions(
                                                 height: 40.0,
                                                 padding: EdgeInsetsDirectional
@@ -838,7 +838,15 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     50.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print('Button_Red pressed ...');
+                                                filterRed = true;
+                                                filterBlue = false;
+                                                filterBlack = false;
+                                                filterWhite = false;
+                                                filterGreen = false;
+                                                filterYellow = false;
+                                                context.pushNamed(
+                                                    OverviewColorWidget
+                                                        .routeName);
                                               },
                                               text: 'Red',
                                               options: FFButtonOptions(
@@ -889,8 +897,15 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Black pressed ...');
+                                                filterRed = false;
+                                                filterBlue = false;
+                                                filterBlack = true;
+                                                filterWhite = false;
+                                                filterGreen = false;
+                                                filterYellow = false;
+                                                context.pushNamed(
+                                                    OverviewColorWidget
+                                                        .routeName);
                                               },
                                               text: 'Black',
                                               options: FFButtonOptions(
@@ -941,8 +956,15 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Blue pressed ...');
+                                                filterRed = false;
+                                                filterBlue = true;
+                                                filterBlack = false;
+                                                filterWhite = false;
+                                                filterGreen = false;
+                                                filterYellow = false;
+                                                context.pushNamed(
+                                                    OverviewColorWidget
+                                                        .routeName);
                                               },
                                               text: 'Blue',
                                               options: FFButtonOptions(
@@ -993,8 +1015,15 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_White pressed ...');
+                                                filterRed = false;
+                                                filterBlue = false;
+                                                filterBlack = false;
+                                                filterWhite = true;
+                                                filterGreen = false;
+                                                filterYellow = false;
+                                                context.pushNamed(
+                                                    OverviewColorWidget
+                                                        .routeName);
                                               },
                                               text: 'White',
                                               options: FFButtonOptions(
@@ -1045,8 +1074,15 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Green pressed ...');
+                                                filterRed = false;
+                                                filterBlue = false;
+                                                filterBlack = false;
+                                                filterWhite = false;
+                                                filterGreen = true;
+                                                filterYellow = false;
+                                                context.pushNamed(
+                                                    OverviewColorWidget
+                                                        .routeName);
                                               },
                                               text: 'Green',
                                               options: FFButtonOptions(
@@ -1097,8 +1133,15 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Yellow pressed ...');
+                                                filterRed = false;
+                                                filterBlue = false;
+                                                filterBlack = false;
+                                                filterWhite = false;
+                                                filterGreen = false;
+                                                filterYellow = true;
+                                                context.pushNamed(
+                                                    OverviewColorWidget
+                                                        .routeName);
                                               },
                                               text: 'Yellow',
                                               options: FFButtonOptions(
@@ -1206,8 +1249,13 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     50.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Summer pressed ...');
+                                                filterSummer = true;
+                                                filterWinter = false;
+                                                filterFall = false;
+                                                filterSpring = false;
+                                                context.pushNamed(
+                                                    OverviewSeasonWidget
+                                                        .routeName);
                                               },
                                               text: 'Summer',
                                               options: FFButtonOptions(
@@ -1258,8 +1306,13 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Fall pressed ...');
+                                                filterSummer = false;
+                                                filterWinter = false;
+                                                filterFall = true;
+                                                filterSpring = false;
+                                                context.pushNamed(
+                                                    OverviewSeasonWidget
+                                                        .routeName);
                                               },
                                               text: 'Fall',
                                               options: FFButtonOptions(
@@ -1310,8 +1363,13 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Winter pressed ...');
+                                                filterSummer = false;
+                                                filterWinter = true;
+                                                filterFall = false;
+                                                filterSpring = false;
+                                                context.pushNamed(
+                                                    OverviewSeasonWidget
+                                                        .routeName);
                                               },
                                               text: 'Winter',
                                               options: FFButtonOptions(
@@ -1362,8 +1420,13 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                print(
-                                                    'Button_Spring pressed ...');
+                                                filterSummer = false;
+                                                filterWinter = false;
+                                                filterFall = false;
+                                                filterSpring = true;
+                                                context.pushNamed(
+                                                    OverviewSeasonWidget
+                                                        .routeName);
                                               },
                                               text: 'Spring',
                                               options: FFButtonOptions(

@@ -10,3 +10,5 @@ export '/pages/overview_category/overview_category_widget.dart'
     show OverviewCategoryWidget;
 export '/pages/add_clothing/add_clothing_widget.dart' show AddClothingWidget;
 export '/pages/search/search_widget.dart' show SearchWidget;
+export '/pages/update_clothing/update_clothing_widget.dart'
+    show UpdateClothingWidget;

@@ -1,3 +1,7 @@
+import 'package:style_base/pages/action_start/action_start_widget.dart';
+import 'package:style_base/pages/overview_page/overview_page_widget.dart';
+import 'package:style_base/pages/update_clothing/update_clothing_widget.dart';
+
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -77,73 +81,96 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
                       color: Color(0x22FFFFFF),
                       borderRadius: BorderRadius.circular(22.0),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                    child: Stack(
                       children: [
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 1.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      45.0, 0.0, 0.0, 0.0),
-                                  child: FlutterFlowIconButton(
-                                    borderRadius: 8.0,
-                                    buttonSize: 50.0,
-                                    icon: Icon(
-                                      Icons.arrow_back,
-                                      color: FlutterFlowTheme.of(context).info,
-                                      size: 45.0,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      380.0, 30.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Filtered by category',
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayLarge
-                                        .override(
-                                          font: GoogleFonts.interTight(
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .displayLarge
-                                                    .fontStyle,
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(0.0, 1.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 1.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  45.0, 0.0, 0.0, 0.0),
+                                          child: FlutterFlowIconButton(
+                                            borderRadius: 8.0,
+                                            buttonSize: 50.0,
+                                            icon: Icon(
+                                              Icons.arrow_back,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              size: 45.0,
+                                            ),
+                                            onPressed: () {
+                                              context.pushNamed(
+                                                  OverviewPageWidget.routeName);
+                                            },
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 35.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .displayLarge
-                                                  .fontStyle,
                                         ),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  450.0, 30.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Filtered by Category',
+                                            style: FlutterFlowTheme.of(context)
+                                                .displayLarge
+                                                .override(
+                                                  font: GoogleFonts.interTight(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .displayLarge
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  fontSize: 35.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displayLarge
+                                                          .fontStyle,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            getItemsListView(),
-                          ],
+                        Positioned(
+                          top: 100,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: getItemsListView(),
                         ),
                       ],
                     ),
@@ -157,24 +184,35 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
     );
   }
 
-  getItemsListView() {
-    return ListView.builder(
+  Widget getItemsListView() {
+    count = 20;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 150.0),
+      child: ListView.builder(
+        physics: AlwaysScrollableScrollPhysics(),
         itemCount: count,
         itemBuilder: (BuildContext context, int position) {
-          return Container(
-            width: MediaQuery.sizeOf(context).width * 0.85,
-            height: MediaQuery.sizeOf(context).height * 0.85,
-            decoration: BoxDecoration(
-              color: Color(0x22FFFFFF),
-              borderRadius: BorderRadius.circular(22.0),
-            ),
+          return Padding(
+            padding: EdgeInsets.only(bottom: 8.0),
             child: ListTile(
               leading: CircleAvatar(
-                backgroundColor: Color(0x22FFFFFF),
-                child: Icon(Icons.edit),
+                backgroundColor: Color.fromARGB(36, 255, 255, 255),
+                child: FlutterFlowIconButton(
+                  borderRadius: 20.0,
+                  buttonSize: 75.0,
+                  icon: Icon(
+                    Icons.edit,
+                    color: FlutterFlowTheme.of(context).info,
+                    size: 25.0,
+                  ),
+                  onPressed: () {
+                    context.push(UpdateClothingWidget.routePath);
+                  },
+                ),
               ),
               title: Text(
-                'Dummy Title',
+                'Item $position',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       font: GoogleFonts.inter(
                         fontWeight: FontWeight.normal,
@@ -183,12 +221,22 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
                       fontSize: 28.0,
                     ),
               ),
-              trailing: Icon(Icons.delete_forever),
-              onTap: () {
-                debugPrint("tapped");
-              },
+              trailing: FlutterFlowIconButton(
+                borderRadius: 8.0,
+                buttonSize: 50.0,
+                icon: Icon(
+                  Icons.delete_forever,
+                  color: FlutterFlowTheme.of(context).info,
+                  size: 30.0,
+                ),
+                onPressed: () {
+                  debugPrint("pressed delete");
+                },
+              ),
             ),
           );
-        });
+        },
+      ),
+    );
   }
 }
