@@ -270,7 +270,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -330,7 +330,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -390,7 +390,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -449,7 +449,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),

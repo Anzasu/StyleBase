@@ -1,5 +1,7 @@
 library globals;
 
+import 'package:style_base/backend/ClothingItem.dart';
+
 // *************************** FOR FILTERED RESULT AND SEARCH ************************
 bool filterCategory = false;
 bool filterCasual = false;
@@ -30,23 +32,8 @@ bool filterYellow = false;
 
 // ******************** FOR UPDATE CLOTHING ITEM AND ADD CLOTHIG ITEM ***************************
 int currentItemID = 0;
-String currentName = "default";
-bool hasCasual = false;
-bool hasTraditional = false;
-bool hasSports = false;
-bool hasFormal = false;
-bool hasShirts = false;
-bool hasPants = false;
-bool hasSkirts = false;
-bool hasDresses = false;
-bool hasJackets = false;
-bool hasSummer = false;
-bool hasWinter = false;
-bool hasFall = false;
-bool hasSpring = false;
-bool hasRed = false;
-bool hasBlue = false;
-bool hasBlack = false;
-bool hasWhite = false;
-bool hasGreen = false;
-bool hasYellow = false;
+ClothingItem currentClothingItem = new ClothingItem("default", 0, 0, 0, 0);
+int currentSeasonID = 0;
+int currentColorID = 0;
+int currentTypeID = 0;
+int currentCategoryID = 0;

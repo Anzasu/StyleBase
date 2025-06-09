@@ -197,7 +197,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                 ),
                                 SizedBox(height: 10),
                                 TextFormField(
-                                  initialValue: currentName,
+                                  initialValue: currentClothingItem.name,
                                   controller: _model.textController,
                                   focusNode: _model.textFieldFocusNode,
                                   decoration: InputDecoration(
@@ -271,7 +271,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -331,7 +331,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -391,7 +391,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -450,7 +450,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
