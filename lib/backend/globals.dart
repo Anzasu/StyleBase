@@ -1,28 +1,28 @@
 library globals;
 
-import 'package:style_base/backend/ClothingItem.dart';
+import 'package:style_base/backend/models/ClothingItem.dart';
 
 // *************************** FOR FILTERED RESULT AND SEARCH ************************
-bool filterCategory = false;
+int filterCategory = 1;
 bool filterCasual = false;
 bool filterTraditional = false;
 bool filterSports = false;
 bool filterFormal = false;
 
-bool filterType = false;
+int filterType = 1;
 bool filterShirts = false;
 bool filterPants = false;
 bool filterSkirts = false;
 bool filterDresses = false;
 bool filterJackets = false;
 
-bool filterSeason = false;
+int filterSeason = 1;
 bool filterSummer = false;
 bool filterWinter = false;
 bool filterFall = false;
 bool filterSpring = false;
 
-bool filterColor = false;
+int filterColor = 1;
 bool filterRed = false;
 bool filterBlue = false;
 bool filterBlack = false;
@@ -31,9 +31,19 @@ bool filterGreen = false;
 bool filterYellow = false;
 
 // ******************** FOR UPDATE CLOTHING ITEM AND ADD CLOTHIG ITEM ***************************
-int currentItemID = 0;
-ClothingItem currentClothingItem = new ClothingItem("default", 0, 0, 0, 0);
-int currentSeasonID = 0;
-int currentColorID = 0;
-int currentTypeID = 0;
-int currentCategoryID = 0;
+
+ClothingItem currentClothingItem = ClothingItem(
+  id: 0,
+  name: "Test",
+  season: 0,
+  color: 0,
+  category: 0,
+  type: 0,
+);
+
+int get currentItemID => currentClothingItem.id;
+String get currentName => currentClothingItem.name;
+int get currentSeasonID => currentClothingItem.season;
+int get currentColorID => currentClothingItem.color;
+int get currentTypeID => currentClothingItem.type;
+int get currentCategoryID => currentClothingItem.category;

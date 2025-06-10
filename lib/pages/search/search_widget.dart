@@ -157,7 +157,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                                         height: 40.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
-                                        color: Color(0xFFD139EF),
+                                        color:
+                                            Color.fromARGB(214, 143, 39, 164),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -269,7 +270,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -329,7 +330,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -389,7 +390,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -448,13 +449,12 @@ class _SearchWidgetState extends State<SearchWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),
-                                //---
                               ],
                             ),
                           ),

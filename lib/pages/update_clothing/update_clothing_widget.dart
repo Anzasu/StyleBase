@@ -32,9 +32,8 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => UpdateClothingModel());
     _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.textController.text = currentClothingItem.name;
   }
 
   @override
@@ -123,7 +122,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             30.0, 30.0, 0.0, 0.0),
                                         child: Text(
-                                          'Update clothing item',
+                                          'Update $currentName',
                                           style: FlutterFlowTheme.of(context)
                                               .displayLarge
                                               .override(
@@ -158,7 +157,8 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                         height: 40.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
-                                        color: Color(0xFFD139EF),
+                                        color:
+                                            Color.fromARGB(214, 143, 39, 164),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -197,7 +197,6 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                 ),
                                 SizedBox(height: 10),
                                 TextFormField(
-                                  initialValue: currentClothingItem.name,
                                   controller: _model.textController,
                                   focusNode: _model.textFieldFocusNode,
                                   decoration: InputDecoration(

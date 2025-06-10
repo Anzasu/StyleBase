@@ -56,11 +56,11 @@
                "max_nudge_display_count": 10,
                "min_sec_between_nudges": 3600,
                "nudge_display_basis": "signal",
-               "prompt": "__MSG_summarize_prompt_to_copilot_text__",
+               "prompt": "Summarize this page.",
                "signal_name": "IsKnowledgeCardQuery",
                "signal_threshold_value": 0.7
             },
-            "text": "__MSG_omnibox_summarize_text__",
+            "text": "Summarize",
             "type": "triggering_config"
          } ],
          "triggers|flight:msOmniboxSummarizeNotification": [ {

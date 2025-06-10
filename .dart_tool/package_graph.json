@@ -13,6 +13,7 @@
         "cached_network_image_web",
         "collection",
         "cupertino_icons",
+        "drift",
         "flutter",
         "flutter_animate",
         "flutter_cache_manager",
@@ -41,6 +42,7 @@
         "shared_preferences_windows",
         "sqflite",
         "sqflite_common",
+        "sqflite_common_ffi",
         "timeago",
         "url_launcher",
         "url_launcher_android",
@@ -199,6 +201,17 @@
       "version": "3.7.1",
       "dependencies": [
         "intl"
+      ]
+    },
+    {
+      "name": "sqflite_common_ffi",
+      "version": "2.3.5",
+      "dependencies": [
+        "meta",
+        "path",
+        "sqflite_common",
+        "sqlite3",
+        "synchronized"
       ]
     },
     {
@@ -443,6 +456,21 @@
       "dependencies": [
         "flutter",
         "flutter_shaders"
+      ]
+    },
+    {
+      "name": "drift",
+      "version": "2.26.1",
+      "dependencies": [
+        "async",
+        "collection",
+        "convert",
+        "meta",
+        "path",
+        "sqlite3",
+        "stack_trace",
+        "stream_channel",
+        "web"
       ]
     },
     {
@@ -723,6 +751,18 @@
       "dependencies": []
     },
     {
+      "name": "sqlite3",
+      "version": "2.7.6",
+      "dependencies": [
+        "collection",
+        "ffi",
+        "meta",
+        "path",
+        "typed_data",
+        "web"
+      ]
+    },
+    {
       "name": "sqflite_platform_interface",
       "version": "2.4.0",
       "dependencies": [
@@ -828,6 +868,13 @@
       "dependencies": [
         "flutter",
         "vector_math"
+      ]
+    },
+    {
+      "name": "convert",
+      "version": "3.1.2",
+      "dependencies": [
+        "typed_data"
       ]
     },
     {

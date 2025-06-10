@@ -1,3 +1,6 @@
+import 'package:style_base/backend/globals.dart';
+import 'package:style_base/backend/models/ClothingItem.dart';
+import 'package:style_base/backend/services/database_service.dart';
 import 'package:style_base/pages/action_start/action_start_widget.dart';
 import 'package:style_base/pages/overview_page/overview_page_widget.dart';
 import 'package:style_base/pages/update_clothing/update_clothing_widget.dart';
@@ -25,6 +28,8 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
   late OverviewCategoryModel _model;
 
   int count = 0;
+
+  final DatabaseService _databaseService = DatabaseService.instance;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -118,6 +123,10 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
                                             onPressed: () {
                                               context.pushNamed(
                                                   OverviewPageWidget.routeName);
+
+                                              setState(() {
+                                                filterCategory = 0;
+                                              });
                                             },
                                           ),
                                         ),
@@ -185,55 +194,120 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
   }
 
   Widget getItemsListView() {
-    count = 20;
+    debugPrint('Current filterCategory: $filterCategory');
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 150.0),
-      child: ListView.builder(
-        physics: AlwaysScrollableScrollPhysics(),
-        itemCount: count,
-        itemBuilder: (BuildContext context, int position) {
-          return Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Color.fromARGB(36, 255, 255, 255),
-                child: FlutterFlowIconButton(
-                  borderRadius: 20.0,
-                  buttonSize: 75.0,
-                  icon: Icon(
-                    Icons.edit,
-                    color: FlutterFlowTheme.of(context).info,
-                    size: 25.0,
-                  ),
-                  onPressed: () {
-                    context.push(UpdateClothingWidget.routePath);
-                  },
-                ),
-              ),
-              title: Text(
-                'Item $position',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.inter(
-                        fontWeight: FontWeight.normal,
-                      ),
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      fontSize: 28.0,
+      child: FutureBuilder<List<ClothingItem>>(
+        future: _databaseService.getCategoryItems(filterCategory),
+        builder: (context, snapshot) {
+          debugPrint('Snapshot state: ${snapshot.connectionState}');
+          if (snapshot.hasError) {
+            debugPrint('Error: ${snapshot.error}');
+            return Center(
+                child: Text(
+              'Error loading items',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    font: GoogleFonts.inter(
+                      fontWeight: FontWeight.normal,
                     ),
-              ),
-              trailing: FlutterFlowIconButton(
-                borderRadius: 8.0,
-                buttonSize: 50.0,
-                icon: Icon(
-                  Icons.delete_forever,
-                  color: FlutterFlowTheme.of(context).info,
-                  size: 30.0,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    fontSize: 28.0,
+                  ),
+            ));
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            debugPrint('No data available');
+            return Center(
+                child: Text(
+              'No items found for this category',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    font: GoogleFonts.inter(
+                      fontWeight: FontWeight.normal,
+                    ),
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    fontSize: 28.0,
+                  ),
+            ));
+          }
+
+          debugPrint('Number of items: ${snapshot.data!.length}');
+          return ListView.builder(
+            physics:
+                AlwaysScrollableScrollPhysics(), // Ensure it's always scrollable
+            itemCount: snapshot.data?.length ?? 0,
+            itemBuilder: (BuildContext context, int index) {
+              final item = snapshot.data![index];
+              debugPrint('Displaying item: ${item.toString()}');
+
+              return Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Color.fromARGB(36, 255, 255, 255),
+                    child: FlutterFlowIconButton(
+                      borderRadius: 20.0,
+                      buttonSize: 75.0,
+                      icon: Icon(
+                        Icons.edit,
+                        color: FlutterFlowTheme.of(context).info,
+                        size: 25.0,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UpdateClothingWidget(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  title: Text(
+                    item.name,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          font: GoogleFonts.inter(
+                            fontWeight: FontWeight.normal,
+                          ),
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          fontSize: 28.0,
+                        ),
+                  ),
+                  subtitle: Text(
+                    "Season: ${item.seasonName}, "
+                    "Color: ${item.colorName}, "
+                    "Type: ${item.typeName}, "
+                    "Category: ${item.categoryName}",
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          font: GoogleFonts.inter(
+                            fontWeight: FontWeight.normal,
+                          ),
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          fontSize: 15.0,
+                        ),
+                  ),
+                  trailing: FlutterFlowIconButton(
+                    borderRadius: 8.0,
+                    buttonSize: 50.0,
+                    icon: Icon(
+                      Icons.delete_forever,
+                      color: FlutterFlowTheme.of(context).info,
+                      size: 30.0,
+                    ),
+                    onPressed: () {
+                      debugPrint("pressed delete");
+                    },
+                  ),
                 ),
-                onPressed: () {
-                  debugPrint("pressed delete");
-                },
-              ),
-            ),
+              );
+            },
           );
         },
       ),
