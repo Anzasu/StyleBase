@@ -1,3 +1,6 @@
+import 'package:style_base/backend/globals.dart';
+import 'package:style_base/backend/models/ClothingItem.dart';
+import 'package:style_base/backend/services/database_service.dart';
 import 'package:style_base/pages/overview_page/overview_page_widget.dart';
 import 'package:style_base/pages/update_clothing/update_clothing_widget.dart';
 
@@ -23,6 +26,8 @@ class OverviewSeasonWidget extends StatefulWidget {
 class _OverviewSeasonWidgetState extends State<OverviewSeasonWidget> {
   late OverviewSeasonModel _model;
   int count = 0;
+
+  final DatabaseService _databaseService = DatabaseService.instance;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -184,56 +189,160 @@ class _OverviewSeasonWidgetState extends State<OverviewSeasonWidget> {
   }
 
   Widget getItemsListView() {
-    count = 20; // Set to number of items you want to display
+    debugPrint('Current filterSeason: $filterSeason');
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 150.0), // Horizontal padding
-      child: ListView.builder(
-        physics:
-            AlwaysScrollableScrollPhysics(), // Ensure it's always scrollable
-        itemCount: count,
-        itemBuilder: (BuildContext context, int position) {
-          return Padding(
-            padding: EdgeInsets.only(bottom: 8.0), // Spacing between items
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Color.fromARGB(36, 255, 255, 255),
-                child: FlutterFlowIconButton(
-                  borderRadius: 20.0,
-                  buttonSize: 75.0,
-                  icon: Icon(
-                    Icons.edit,
-                    color: FlutterFlowTheme.of(context).info,
-                    size: 25.0,
-                  ),
-                  onPressed: () {
-                    context.pushNamed(UpdateClothingWidget.routeName);
-                  },
-                ),
-              ),
-              title: Text(
-                'Item $position',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.inter(
-                        fontWeight: FontWeight.normal,
-                      ),
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      fontSize: 28.0,
+      padding: EdgeInsets.symmetric(horizontal: 150.0),
+      child: FutureBuilder<List<ClothingItem>>(
+        future: _databaseService.getSeasonItems(filterSeason),
+        builder: (context, snapshot) {
+          debugPrint('Snapshot state: ${snapshot.connectionState}');
+          if (snapshot.hasError) {
+            debugPrint('Error: ${snapshot.error}');
+            return Center(
+                child: Text(
+              'Error loading items',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    font: GoogleFonts.inter(
+                      fontWeight: FontWeight.normal,
                     ),
-              ),
-              trailing: FlutterFlowIconButton(
-                borderRadius: 8.0,
-                buttonSize: 50.0,
-                icon: Icon(
-                  Icons.delete_forever,
-                  color: FlutterFlowTheme.of(context).info,
-                  size: 30.0,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    fontSize: 28.0,
+                  ),
+            ));
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            debugPrint('No data available');
+            return Center(
+                child: Text(
+              'No items found for this season',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    font: GoogleFonts.inter(
+                      fontWeight: FontWeight.normal,
+                    ),
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    fontSize: 28.0,
+                  ),
+            ));
+          }
+
+          debugPrint('Number of items: ${snapshot.data!.length}');
+          return ListView.builder(
+            physics:
+                AlwaysScrollableScrollPhysics(), // Ensure it's always scrollable
+            itemCount: snapshot.data?.length ?? 0,
+            itemBuilder: (BuildContext context, int index) {
+              final item = snapshot.data![index];
+              debugPrint('Displaying item: ${item.toString()}');
+
+              return Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Color.fromARGB(36, 255, 255, 255),
+                    child: FlutterFlowIconButton(
+                      borderRadius: 20.0,
+                      buttonSize: 75.0,
+                      icon: Icon(
+                        Icons.edit,
+                        color: FlutterFlowTheme.of(context).info,
+                        size: 25.0,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                UpdateClothingWidget(item: item),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  title: Text(
+                    item.name,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          font: GoogleFonts.inter(
+                            fontWeight: FontWeight.normal,
+                          ),
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          fontSize: 28.0,
+                        ),
+                  ),
+                  subtitle: Text(
+                    "Season: ${item.seasonName}, "
+                    "Color: ${item.colorName}, "
+                    "Type: ${item.typeName}, "
+                    "Category: ${item.categoryName}",
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          font: GoogleFonts.inter(
+                            fontWeight: FontWeight.normal,
+                          ),
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          fontSize: 15.0,
+                        ),
+                  ),
+                  trailing: FlutterFlowIconButton(
+                    borderRadius: 8.0,
+                    buttonSize: 50.0,
+                    icon: Icon(
+                      Icons.delete_forever,
+                      color: FlutterFlowTheme.of(context).info,
+                      size: 30.0,
+                    ),
+                    onPressed: () async {
+                      final confirmed = await showDialog<bool>(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('Delete Item'),
+                          content: Text(
+                              'Are you sure you want to delete ${item.name}?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                              child: Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, true),
+                              child: Text('Delete'),
+                            ),
+                          ],
+                        ),
+                      );
+
+                      if (confirmed == true) {
+                        try {
+                          final deletedCount =
+                              await _databaseService.deleteItem(item.id);
+                          if (deletedCount > 0) {
+                            setState(() {});
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text('Item deleted successfully')),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Item not found')),
+                            );
+                          }
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Error deleting item: $e')),
+                          );
+                        }
+                      }
+                    },
+                  ),
                 ),
-                onPressed: () {
-                  debugPrint("pressed delete");
-                },
-              ),
-            ),
+              );
+            },
           );
         },
       ),

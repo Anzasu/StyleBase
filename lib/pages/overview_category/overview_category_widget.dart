@@ -262,7 +262,9 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => UpdateClothingWidget(),
+                            builder: (context) => UpdateClothingWidget(
+                              item: item,
+                            ),
                           ),
                         );
                       },
@@ -301,8 +303,47 @@ class _OverviewCategoryWidgetState extends State<OverviewCategoryWidget> {
                       color: FlutterFlowTheme.of(context).info,
                       size: 30.0,
                     ),
-                    onPressed: () {
-                      debugPrint("pressed delete");
+                    onPressed: () async {
+                      final confirmed = await showDialog<bool>(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('Delete Item'),
+                          content: Text(
+                              'Are you sure you want to delete ${item.name}?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                              child: Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, true),
+                              child: Text('Delete'),
+                            ),
+                          ],
+                        ),
+                      );
+
+                      if (confirmed == true) {
+                        try {
+                          final deletedCount =
+                              await _databaseService.deleteItem(item.id);
+                          if (deletedCount > 0) {
+                            setState(() {});
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text('Item deleted successfully')),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Item not found')),
+                            );
+                          }
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Error deleting item: $e')),
+                          );
+                        }
+                      }
                     },
                   ),
                 ),

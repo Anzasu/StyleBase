@@ -53,7 +53,8 @@ class DatabaseService {
     final databseDirPath = await getDatabasesPath();
     final databasePath = join(databseDirPath, "stylebase_db.db");
 
-    await deleteDatabase(databasePath);
+    // for a fresh start
+    // await deleteDatabase(databasePath);
 
     final database = await openDatabase(databasePath, version: 1,
         onCreate: (db, version) async {
@@ -208,32 +209,49 @@ class DatabaseService {
   }
 
   Future<List<ClothingItem>> getSearchItems({
-    int? category,
-    int? season,
-    int? type,
-    int? color,
-    String? name,
+    List<String> category = const [],
+    List<String> season = const [],
+    List<String> type = const [],
+    List<String> color = const [],
+    String name = "",
   }) async {
     final db = await database;
 
     try {
+      final List<int> categoryIds = category.map(_convertCategoryToId).toList();
+      final List<int> seasonIds = season.map(_convertSeasonToId).toList();
+      final List<int> typeIds = type.map(_convertTypeToId).toList();
+      final List<int> colorIds = color.map(_convertColorToId).toList();
+
       final query = StringBuffer('SELECT * FROM $clothingItemsTable');
       final whereClauses = <String>[];
       final whereArgs = <dynamic>[];
 
-      void addCondition(String column, dynamic value) {
-        if (value != null && value != 0) {
-          whereClauses.add('$column = ?');
-          whereArgs.add(value);
-        }
+      if (categoryIds.isNotEmpty) {
+        whereClauses.add(
+            '$colCategoryID IN (${List.filled(categoryIds.length, '?').join(',')})');
+        whereArgs.addAll(categoryIds);
       }
 
-      addCondition(colCategoryID, category);
-      addCondition(colSeasonID, season);
-      addCondition(colTypeID, type);
-      addCondition(colColorID, color);
+      if (seasonIds.isNotEmpty) {
+        whereClauses.add(
+            '$colSeasonID IN (${List.filled(seasonIds.length, '?').join(',')})');
+        whereArgs.addAll(seasonIds);
+      }
 
-      if (name != null && name.isNotEmpty) {
+      if (typeIds.isNotEmpty) {
+        whereClauses.add(
+            '$colTypeID IN (${List.filled(typeIds.length, '?').join(',')})');
+        whereArgs.addAll(typeIds);
+      }
+
+      if (colorIds.isNotEmpty) {
+        whereClauses.add(
+            '$colColorID IN (${List.filled(colorIds.length, '?').join(',')})');
+        whereArgs.addAll(colorIds);
+      }
+
+      if (name.isNotEmpty) {
         whereClauses.add('$colItemName LIKE ?');
         whereArgs.add('%$name%');
       }
@@ -242,12 +260,207 @@ class DatabaseService {
         query.write(' WHERE ${whereClauses.join(' AND ')}');
       }
 
+      debugPrint('Executing query: ${query.toString()} with args: $whereArgs');
       final data = await db.rawQuery(query.toString(), whereArgs);
 
       return data.map((e) => ClothingItem.fromMapObject(e)).toList();
     } catch (e) {
       debugPrint('Error in getSearchItems: $e');
       return [];
+    }
+  }
+
+  int _convertColorToId(String color) {
+    switch (color) {
+      case 'Red':
+        return 1;
+      case 'Black':
+        return 2;
+      case 'Blue':
+        return 3;
+      case 'White':
+        return 4;
+      case 'Green':
+        return 5;
+      case 'Yellow':
+        return 6;
+      default:
+        return 0;
+    }
+  }
+
+  int _convertSeasonToId(String season) {
+    switch (season) {
+      case 'Summer':
+        return 1;
+      case 'Winter':
+        return 2;
+      case 'Fall':
+        return 3;
+      case 'Spring':
+        return 4;
+      default:
+        return 0;
+    }
+  }
+
+  int _convertCategoryToId(String category) {
+    switch (category) {
+      case 'Casual wear':
+        return 1;
+      case 'Traditional wear':
+        return 2;
+      case 'Formal wear':
+        return 3;
+      case 'Sports wear':
+        return 4;
+      default:
+        return 0;
+    }
+  }
+
+  int _convertTypeToId(String type) {
+    switch (type) {
+      case 'Shirts':
+        return 1;
+      case 'Pants':
+        return 2;
+      case 'Skirts':
+        return 3;
+      case 'Dresses':
+        return 4;
+      case 'Jackets':
+        return 5;
+      default:
+        return 0;
+    }
+  }
+
+  // *************FOR UPDATE METHOD*****************
+
+  // Add this method to your DatabaseService class
+  Future<int> updateItem(ClothingItem item) async {
+    try {
+      final db = await database;
+
+      final count = await db.update(
+        clothingItemsTable,
+        {
+          colItemName: item.name,
+          colSeasonID: item.season,
+          colColorID: item.color,
+          colTypeID: item.type,
+          colCategoryID: item.category,
+        },
+        where: '$colItemID = ?',
+        whereArgs: [item.id],
+      );
+
+      debugPrint('Updated $count item(s) with ID: ${item.id}');
+      return count; // Returns number of rows affected (1 if successful)
+    } catch (e) {
+      debugPrint('Error updating item with ID ${item.id}: $e');
+      return 0; // Returns 0 if failed
+    }
+  }
+
+  // In DatabaseService class
+  Future<int> getSeasonIdFromName(String? name) async {
+    if (name == null || name.isEmpty) return 0;
+    final db = await database;
+    try {
+      final result = await db.query(
+        seasonsTable,
+        where: 'LOWER($colSeason) = ?',
+        whereArgs: [name.toLowerCase()],
+        limit: 1,
+      );
+      return result.isNotEmpty ? (result.first[colSeasonID] as int?) ?? 0 : 0;
+    } catch (e) {
+      debugPrint('Error getting season ID: $e');
+      return 0;
+    }
+  }
+
+  Future<int> getColorIdFromName(String? name) async {
+    if (name == null || name.isEmpty) return 0;
+    final db = await database;
+    try {
+      final result = await db.query(
+        colorTable,
+        where: 'LOWER($colColor) = ?',
+        whereArgs: [name.toLowerCase()],
+        limit: 1,
+      );
+      return result.isNotEmpty ? (result.first[colColorID] as int?) ?? 0 : 0;
+    } catch (e) {
+      debugPrint('Error getting color ID: $e');
+      return 0;
+    }
+  }
+
+  Future<int> getTypeIdFromName(String? name) async {
+    if (name == null || name.isEmpty) return 0;
+    final db = await database;
+    try {
+      final result = await db.query(
+        typeTable,
+        where: 'LOWER($colType) = ?',
+        whereArgs: [name.toLowerCase()],
+        limit: 1,
+      );
+      return result.isNotEmpty ? (result.first[colTypeID] as int?) ?? 0 : 0;
+    } catch (e) {
+      debugPrint('Error getting type ID: $e');
+      return 0;
+    }
+  }
+
+  Future<int> getCategoryIdFromName(String? name) async {
+    if (name == null || name.isEmpty) return 0;
+    final db = await database;
+    try {
+      final result = await db.query(
+        categoryTable,
+        where: 'LOWER($colCategory) = ?',
+        whereArgs: [name.toLowerCase()],
+        limit: 1,
+      );
+      return result.isNotEmpty ? (result.first[colCategoryID] as int?) ?? 0 : 0;
+    } catch (e) {
+      debugPrint('Error getting category ID: $e');
+      return 0;
+    }
+  }
+
+  // **************************DELETE METHODS ****************************
+  // Deletes one item
+  Future<int> deleteItem(int id) async {
+    try {
+      final db = await database;
+      final count = await db.delete(
+        clothingItemsTable,
+        where: '$colItemID = ?',
+        whereArgs: [id],
+      );
+      debugPrint('Deleted $count item(s) with ID: $id');
+      return count; // if 1 --> successful
+    } catch (e) {
+      debugPrint('Error deleting item with ID $id: $e');
+      return 0; // if 0 --> failed
+    }
+  }
+
+//(Optional: we will only implement this if there is enough time)
+  Future<int> deleteAllItems() async {
+    try {
+      final db = await database;
+      final count = await db.delete(clothingItemsTable);
+      debugPrint('Deleted all $count items');
+      return count;
+    } catch (e) {
+      debugPrint('Error deleting all items: $e');
+      return 0;
     }
   }
 

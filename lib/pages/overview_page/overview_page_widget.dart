@@ -206,10 +206,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     50.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterCasual = true;
-                                                filterFormal = false;
-                                                filterTraditional = false;
-                                                filterSports = false;
+                                                setState(() {
+                                                  filterCategory = 1;
+                                                });
                                                 context.pushNamed(
                                                     OverviewCategoryWidget
                                                         .routeName);
@@ -263,10 +262,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterCasual = false;
-                                                filterFormal = false;
-                                                filterTraditional = true;
-                                                filterSports = false;
+                                                setState(() {
+                                                  filterCategory = 2;
+                                                });
                                                 context.pushNamed(
                                                     OverviewCategoryWidget
                                                         .routeName);
@@ -320,10 +318,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterCasual = false;
-                                                filterFormal = true;
-                                                filterTraditional = false;
-                                                filterSports = false;
+                                                setState(() {
+                                                  filterCategory = 3;
+                                                });
                                                 context.pushNamed(
                                                     OverviewCategoryWidget
                                                         .routeName);
@@ -377,10 +374,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterCasual = false;
-                                                filterFormal = false;
-                                                filterTraditional = false;
-                                                filterSports = true;
+                                                setState(() {
+                                                  filterCategory = 4;
+                                                });
                                                 context.pushNamed(
                                                     OverviewCategoryWidget
                                                         .routeName);
@@ -491,11 +487,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     50.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterShirts = true;
-                                                filterPants = false;
-                                                filterSkirts = false;
-                                                filterDresses = false;
-                                                filterJackets = false;
+                                                setState(() {
+                                                  filterType = 1;
+                                                });
                                                 context.pushNamed(
                                                     OverviewTypeWidget
                                                         .routeName);
@@ -549,11 +543,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterShirts = false;
-                                                filterPants = true;
-                                                filterSkirts = false;
-                                                filterDresses = false;
-                                                filterJackets = false;
+                                                setState(() {
+                                                  filterType = 2;
+                                                });
                                                 context.pushNamed(
                                                     OverviewTypeWidget
                                                         .routeName);
@@ -607,11 +599,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterShirts = false;
-                                                filterPants = false;
-                                                filterSkirts = true;
-                                                filterDresses = false;
-                                                filterJackets = false;
+                                                setState(() {
+                                                  filterType = 3;
+                                                });
                                                 context.pushNamed(
                                                     OverviewTypeWidget
                                                         .routeName);
@@ -665,11 +655,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterShirts = false;
-                                                filterPants = false;
-                                                filterSkirts = false;
-                                                filterDresses = true;
-                                                filterJackets = false;
+                                                setState(() {
+                                                  filterType = 4;
+                                                });
                                                 context.pushNamed(
                                                     OverviewTypeWidget
                                                         .routeName);
@@ -723,11 +711,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterShirts = false;
-                                                filterPants = false;
-                                                filterSkirts = false;
-                                                filterDresses = false;
-                                                filterJackets = true;
+                                                setState(() {
+                                                  filterType = 5;
+                                                });
                                                 context.pushNamed(
                                                     OverviewTypeWidget
                                                         .routeName);
@@ -838,12 +824,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     50.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterRed = true;
-                                                filterBlue = false;
-                                                filterBlack = false;
-                                                filterWhite = false;
-                                                filterGreen = false;
-                                                filterYellow = false;
+                                                setState(() {
+                                                  filterColor = 1;
+                                                });
                                                 context.pushNamed(
                                                     OverviewColorWidget
                                                         .routeName);
@@ -897,12 +880,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterRed = false;
-                                                filterBlue = false;
-                                                filterBlack = true;
-                                                filterWhite = false;
-                                                filterGreen = false;
-                                                filterYellow = false;
+                                                setState(() {
+                                                  filterColor = 2;
+                                                });
                                                 context.pushNamed(
                                                     OverviewColorWidget
                                                         .routeName);
@@ -956,12 +936,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterRed = false;
-                                                filterBlue = true;
-                                                filterBlack = false;
-                                                filterWhite = false;
-                                                filterGreen = false;
-                                                filterYellow = false;
+                                                setState(() {
+                                                  filterColor = 3;
+                                                });
                                                 context.pushNamed(
                                                     OverviewColorWidget
                                                         .routeName);
@@ -1015,12 +992,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterRed = false;
-                                                filterBlue = false;
-                                                filterBlack = false;
-                                                filterWhite = true;
-                                                filterGreen = false;
-                                                filterYellow = false;
+                                                setState(() {
+                                                  filterColor = 4;
+                                                });
                                                 context.pushNamed(
                                                     OverviewColorWidget
                                                         .routeName);
@@ -1074,12 +1048,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterRed = false;
-                                                filterBlue = false;
-                                                filterBlack = false;
-                                                filterWhite = false;
-                                                filterGreen = true;
-                                                filterYellow = false;
+                                                setState(() {
+                                                  filterColor = 5;
+                                                });
                                                 context.pushNamed(
                                                     OverviewColorWidget
                                                         .routeName);
@@ -1133,12 +1104,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterRed = false;
-                                                filterBlue = false;
-                                                filterBlack = false;
-                                                filterWhite = false;
-                                                filterGreen = false;
-                                                filterYellow = true;
+                                                setState(() {
+                                                  filterColor = 6;
+                                                });
                                                 context.pushNamed(
                                                     OverviewColorWidget
                                                         .routeName);
@@ -1249,10 +1217,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     50.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterSummer = true;
-                                                filterWinter = false;
-                                                filterFall = false;
-                                                filterSpring = false;
+                                                setState(() {
+                                                  filterSeason = 1;
+                                                });
                                                 context.pushNamed(
                                                     OverviewSeasonWidget
                                                         .routeName);
@@ -1306,10 +1273,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterSummer = false;
-                                                filterWinter = false;
-                                                filterFall = true;
-                                                filterSpring = false;
+                                                setState(() {
+                                                  filterSeason = 3;
+                                                });
                                                 context.pushNamed(
                                                     OverviewSeasonWidget
                                                         .routeName);
@@ -1363,10 +1329,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 10.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterSummer = false;
-                                                filterWinter = true;
-                                                filterFall = false;
-                                                filterSpring = false;
+                                                setState(() {
+                                                  filterColor = 2;
+                                                });
                                                 context.pushNamed(
                                                     OverviewSeasonWidget
                                                         .routeName);
@@ -1420,10 +1385,9 @@ class _OverviewPageWidgetState extends State<OverviewPageWidget> {
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () {
-                                                filterSummer = false;
-                                                filterWinter = false;
-                                                filterFall = false;
-                                                filterSpring = true;
+                                                setState(() {
+                                                  filterColor = 4;
+                                                });
                                                 context.pushNamed(
                                                     OverviewSeasonWidget
                                                         .routeName);

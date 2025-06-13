@@ -1,4 +1,6 @@
+import 'package:style_base/backend/globals.dart';
 import 'package:style_base/flutter_flow/flutter_flow_icon_button.dart';
+import 'package:style_base/index.dart';
 import 'package:style_base/pages/action_start/action_start_widget.dart';
 
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -110,6 +112,13 @@ class _SearchWidgetState extends State<SearchWidget> {
                                             size: 45.0,
                                           ),
                                           onPressed: () {
+                                            setState(() {
+                                              name = "";
+                                              season = [];
+                                              type = [];
+                                              color = [];
+                                              category = [];
+                                            });
                                             context.pushNamed(
                                                 ActionStartWidget.routeName);
                                           },
@@ -150,7 +159,13 @@ class _SearchWidgetState extends State<SearchWidget> {
                                     ),
                                     FFButtonWidget(
                                       onPressed: () {
-                                        print('Button pressed ...');
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                SearchResultWidget(),
+                                          ),
+                                        );
                                       },
                                       text: 'SEARCH',
                                       options: FFButtonOptions(
@@ -217,6 +232,11 @@ class _SearchWidgetState extends State<SearchWidget> {
                                             .secondaryBackground,
                                         fontSize: 20.0,
                                       ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      name = value;
+                                    });
+                                  },
                                 ),
                                 SizedBox(height: 30),
                                 // Season Chips
@@ -241,8 +261,16 @@ class _SearchWidgetState extends State<SearchWidget> {
                                     ChipData('Winter'),
                                     ChipData('Spring')
                                   ],
-                                  onChanged: (val) =>
-                                      _model.choiceChipsValues1 = val,
+                                  onChanged: (val) {
+                                    _model.choiceChipsValues1 = val;
+                                    setState(() {
+                                      if (_model.choiceChipsValues1 == null) {
+                                        season = [];
+                                      } else {
+                                        season = _model.choiceChipsValues1!;
+                                      }
+                                    });
+                                  },
                                   selectedChipStyle: ChipStyle(
                                     backgroundColor: Color(0xB2E8B9FF),
                                     textStyle: FlutterFlowTheme.of(context)
@@ -301,8 +329,16 @@ class _SearchWidgetState extends State<SearchWidget> {
                                     ChipData('Green'),
                                     ChipData('Yellow')
                                   ],
-                                  onChanged: (val) =>
-                                      _model.choiceChipsValues1 = val,
+                                  onChanged: (val) {
+                                    _model.choiceChipsValues2 = val;
+                                    setState(() {
+                                      if (_model.choiceChipsValues2 == null) {
+                                        color = [];
+                                      } else {
+                                        color = _model.choiceChipsValues2!;
+                                      }
+                                    });
+                                  },
                                   selectedChipStyle: ChipStyle(
                                     backgroundColor: Color(0xB2E8B9FF),
                                     textStyle: FlutterFlowTheme.of(context)
@@ -332,7 +368,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                   chipSpacing: 25.0,
                                   multiselect: false,
                                   controller:
-                                      _model.choiceChipsValueController1 ??=
+                                      _model.choiceChipsValueController2 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),
@@ -361,8 +397,16 @@ class _SearchWidgetState extends State<SearchWidget> {
                                     ChipData('Dresses'),
                                     ChipData('Jackets')
                                   ],
-                                  onChanged: (val) =>
-                                      _model.choiceChipsValues1 = val,
+                                  onChanged: (val) {
+                                    _model.choiceChipsValues3 = val;
+                                    setState(() {
+                                      if (_model.choiceChipsValues3 == null) {
+                                        type = [];
+                                      } else {
+                                        type = _model.choiceChipsValues3!;
+                                      }
+                                    });
+                                  },
                                   selectedChipStyle: ChipStyle(
                                     backgroundColor: Color(0xB2E8B9FF),
                                     textStyle: FlutterFlowTheme.of(context)
@@ -392,7 +436,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                   chipSpacing: 25.0,
                                   multiselect: false,
                                   controller:
-                                      _model.choiceChipsValueController1 ??=
+                                      _model.choiceChipsValueController3 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),
@@ -420,8 +464,16 @@ class _SearchWidgetState extends State<SearchWidget> {
                                     ChipData('Formal wear'),
                                     ChipData('Sports wear')
                                   ],
-                                  onChanged: (val) =>
-                                      _model.choiceChipsValues1 = val,
+                                  onChanged: (val) {
+                                    _model.choiceChipsValues4 = val;
+                                    setState(() {
+                                      if (_model.choiceChipsValues4 == null) {
+                                        category = [];
+                                      } else {
+                                        category = _model.choiceChipsValues4!;
+                                      }
+                                    });
+                                  },
                                   selectedChipStyle: ChipStyle(
                                     backgroundColor: Color(0xB2E8B9FF),
                                     textStyle: FlutterFlowTheme.of(context)
@@ -451,7 +503,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                   chipSpacing: 25.0,
                                   multiselect: false,
                                   controller:
-                                      _model.choiceChipsValueController1 ??=
+                                      _model.choiceChipsValueController4 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),

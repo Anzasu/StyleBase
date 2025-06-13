@@ -1,4 +1,7 @@
 import 'package:style_base/backend/globals.dart';
+import 'package:style_base/backend/globals.dart' as globals;
+import 'package:style_base/backend/models/ClothingItem.dart';
+import 'package:style_base/backend/services/database_service.dart';
 import 'package:style_base/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:style_base/pages/action_start/action_start_widget.dart';
 
@@ -15,11 +18,15 @@ export 'update_clothing_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class UpdateClothingWidget extends StatefulWidget {
-  const UpdateClothingWidget({super.key});
+  const UpdateClothingWidget({
+    super.key,
+    required this.item, // Make this required
+  });
 
   static String routeName = 'UpdateClothing';
   static String routePath = '/updateClothing';
 
+  final ClothingItem item;
   @override
   State<UpdateClothingWidget> createState() => _UpdateClothingWidgetState();
 }
@@ -32,8 +39,18 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
   @override
   void initState() {
     super.initState();
-    _model.textController ??= TextEditingController();
-    _model.textController.text = currentClothingItem.name;
+    _model = createModel(context, () => UpdateClothingModel());
+
+    _model.textController ??= TextEditingController(text: widget.item.name);
+
+    _model.choiceChipsValueController1 =
+        FormFieldController<List<String>>([widget.item.seasonName]);
+    _model.choiceChipsValueController2 =
+        FormFieldController<List<String>>([widget.item.colorName]);
+    _model.choiceChipsValueController3 =
+        FormFieldController<List<String>>([widget.item.typeName]);
+    _model.choiceChipsValueController4 =
+        FormFieldController<List<String>>([widget.item.categoryName]);
   }
 
   @override
@@ -122,7 +139,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             30.0, 30.0, 0.0, 0.0),
                                         child: Text(
-                                          'Update $currentName',
+                                          'Update item',
                                           style: FlutterFlowTheme.of(context)
                                               .displayLarge
                                               .override(
@@ -149,8 +166,111 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                       ),
                                     ),
                                     FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        try {
+                                          // Get the selected values from the form
+                                          final selectedSeason = _model
+                                              .choiceChipsValues1?.firstOrNull;
+                                          final selectedColor = _model
+                                              .choiceChipsValues2?.firstOrNull;
+                                          final selectedType = _model
+                                              .choiceChipsValues3?.firstOrNull;
+                                          final selectedCategory = _model
+                                              .choiceChipsValues4?.firstOrNull;
+                                          final name =
+                                              _model.textController.text;
+
+                                          // Validate name
+                                          if (name.isEmpty) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  content: Text(
+                                                      'Please enter a name')),
+                                            );
+                                            return;
+                                          }
+
+                                          // Convert names to IDs
+                                          final seasonId = selectedSeason !=
+                                                  null
+                                              ? await DatabaseService.instance
+                                                  .getSeasonIdFromName(
+                                                      selectedSeason)
+                                              : widget.item.season;
+
+                                          final colorId = selectedColor != null
+                                              ? await DatabaseService.instance
+                                                  .getColorIdFromName(
+                                                      selectedColor)
+                                              : widget.item.color;
+
+                                          final typeId = selectedType != null
+                                              ? await DatabaseService.instance
+                                                  .getTypeIdFromName(
+                                                      selectedType)
+                                              : widget.item.type;
+
+                                          final categoryId = selectedCategory !=
+                                                  null
+                                              ? await DatabaseService.instance
+                                                  .getCategoryIdFromName(
+                                                      selectedCategory)
+                                              : widget.item.category;
+
+                                          // Debug prints to verify values
+                                          debugPrint('Updating item with:');
+                                          debugPrint('Name: $name');
+                                          debugPrint(
+                                              'Season: $selectedSeason → $seasonId');
+                                          debugPrint(
+                                              'Color: $selectedColor → $colorId');
+                                          debugPrint(
+                                              'Type: $selectedType → $typeId');
+                                          debugPrint(
+                                              'Category: $selectedCategory → $categoryId');
+
+                                          // Create updated item
+                                          final updatedItem =
+                                              widget.item.copyWith(
+                                            name: name,
+                                            season: seasonId,
+                                            color: colorId,
+                                            type: typeId,
+                                            category: categoryId,
+                                          );
+
+                                          // Update in database
+                                          final success = await DatabaseService
+                                              .instance
+                                              .updateItem(updatedItem);
+
+                                          if (success > 0) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  content: Text(
+                                                      'Item updated successfully!')),
+                                            );
+                                            if (mounted)
+                                              Navigator.pop(context, true);
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  content: Text(
+                                                      'Failed to update item')),
+                                            );
+                                          }
+                                        } catch (e) {
+                                          debugPrint('Error updating item: $e');
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                                content: Text(
+                                                    'Error: ${e.toString()}')),
+                                          );
+                                        }
                                       },
                                       text: 'UPDATE',
                                       options: FFButtonOptions(
@@ -217,6 +337,11 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                             .secondaryBackground,
                                         fontSize: 20.0,
                                       ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      globals.setCurrentItemName(value);
+                                    });
+                                  },
                                 ),
                                 SizedBox(height: 30),
                                 // ************* Season *******************************
@@ -237,12 +362,17 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                 FlutterFlowChoiceChips(
                                   options: [
                                     ChipData('Summer'),
-                                    ChipData('Fall'),
                                     ChipData('Winter'),
+                                    ChipData('Fall'),
                                     ChipData('Spring')
                                   ],
-                                  onChanged: (val) =>
-                                      _model.choiceChipsValues1 = val,
+                                  onChanged: (val) {
+                                    _model.choiceChipsValues1 = val;
+                                    setState(() {
+                                      globals.setCurrentItemSeason(
+                                          _model.choiceChipsValues1!.first);
+                                    });
+                                  },
                                   selectedChipStyle: ChipStyle(
                                     backgroundColor: Color(0xB2E8B9FF),
                                     textStyle: FlutterFlowTheme.of(context)
@@ -295,14 +425,19 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                 FlutterFlowChoiceChips(
                                   options: [
                                     ChipData('Red'),
-                                    ChipData('Blue'),
                                     ChipData('Black'),
+                                    ChipData('Blue'),
                                     ChipData('White'),
                                     ChipData('Green'),
                                     ChipData('Yellow')
                                   ],
-                                  onChanged: (val) =>
-                                      _model.choiceChipsValues1 = val,
+                                  onChanged: (val) {
+                                    _model.choiceChipsValues2 = val;
+                                    setState(() {
+                                      globals.setCurrentItemColor(
+                                          _model.choiceChipsValues2!.first);
+                                    });
+                                  },
                                   selectedChipStyle: ChipStyle(
                                     backgroundColor: Color(0xB2E8B9FF),
                                     textStyle: FlutterFlowTheme.of(context)
@@ -332,7 +467,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                   chipSpacing: 25.0,
                                   multiselect: false,
                                   controller:
-                                      _model.choiceChipsValueController1 ??=
+                                      _model.choiceChipsValueController2 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),
@@ -361,8 +496,13 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                     ChipData('Dresses'),
                                     ChipData('Jackets')
                                   ],
-                                  onChanged: (val) =>
-                                      _model.choiceChipsValues1 = val,
+                                  onChanged: (val) {
+                                    _model.choiceChipsValues3 = val;
+                                    setState(() {
+                                      globals.setCurrentItemType(
+                                          _model.choiceChipsValues3!.first);
+                                    });
+                                  },
                                   selectedChipStyle: ChipStyle(
                                     backgroundColor: Color(0xB2E8B9FF),
                                     textStyle: FlutterFlowTheme.of(context)
@@ -392,7 +532,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                   chipSpacing: 25.0,
                                   multiselect: false,
                                   controller:
-                                      _model.choiceChipsValueController1 ??=
+                                      _model.choiceChipsValueController3 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),
@@ -420,8 +560,13 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                     ChipData('Formal wear'),
                                     ChipData('Sports wear')
                                   ],
-                                  onChanged: (val) =>
-                                      _model.choiceChipsValues1 = val,
+                                  onChanged: (val) {
+                                    _model.choiceChipsValues4 = val;
+                                    setState(() {
+                                      globals.setCurrentItemCategory(
+                                          _model.choiceChipsValues4!.first);
+                                    });
+                                  },
                                   selectedChipStyle: ChipStyle(
                                     backgroundColor: Color(0xB2E8B9FF),
                                     textStyle: FlutterFlowTheme.of(context)
@@ -451,7 +596,7 @@ class _UpdateClothingWidgetState extends State<UpdateClothingWidget> {
                                   chipSpacing: 25.0,
                                   multiselect: false,
                                   controller:
-                                      _model.choiceChipsValueController1 ??=
+                                      _model.choiceChipsValueController4 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),

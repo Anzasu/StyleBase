@@ -1,13 +1,12 @@
 class ClothingItem {
   final int id;
-  late final String name;
-  late final int season;
-  late final int color;
-  late final int category;
-  late final int type;
+  final String name;
+  final int season;
+  final int color;
+  final int category;
+  final int type;
 
-  // Main constructor
-  ClothingItem({
+  const ClothingItem({
     required this.id,
     required this.name,
     required this.season,
@@ -16,7 +15,15 @@ class ClothingItem {
     required this.type,
   });
 
-  // Factory constructor for creating items from database
+  factory ClothingItem.empty() => const ClothingItem(
+        id: 0,
+        name: "",
+        season: 0,
+        color: 0,
+        category: 0,
+        type: 0,
+      );
+
   factory ClothingItem.fromMapObject(Map<String, dynamic> map) {
     return ClothingItem(
       id: map['id'] as int? ?? 0,
@@ -28,7 +35,6 @@ class ClothingItem {
     );
   }
 
-  // Named constructor for creating new items (without ID)
   factory ClothingItem.create({
     required String name,
     required int season,
@@ -37,7 +43,7 @@ class ClothingItem {
     required int type,
   }) {
     return ClothingItem(
-      id: 0, // Default ID for new items
+      id: 0,
       name: name,
       season: season,
       color: color,
@@ -46,7 +52,24 @@ class ClothingItem {
     );
   }
 
-  // Convert to Map
+  ClothingItem copyWith({
+    int? id,
+    String? name,
+    int? season,
+    int? color,
+    int? category,
+    int? type,
+  }) {
+    return ClothingItem(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      season: season ?? this.season,
+      color: color ?? this.color,
+      category: category ?? this.category,
+      type: type ?? this.type,
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -58,49 +81,44 @@ class ClothingItem {
     };
   }
 
-  // Helper methods for string conversions
-  String get seasonName {
-    return const {
-          1: 'summer',
-          2: 'winter',
-          3: 'fall',
-          4: 'spring',
-        }[season] ??
-        'unspecified';
-  }
+  String get seasonName =>
+      const {
+        1: 'Summer',
+        2: 'Winter',
+        3: 'Fall',
+        4: 'Spring',
+      }[season] ??
+      'unspecified';
 
-  String get colorName {
-    return const {
-          1: 'red',
-          2: 'black',
-          3: 'blue',
-          4: 'white',
-          5: 'green',
-          6: 'yellow',
-        }[color] ??
-        'unspecified';
-  }
+  String get colorName =>
+      const {
+        1: 'Red',
+        2: 'Black',
+        3: 'Blue',
+        4: 'White',
+        5: 'Green',
+        6: 'Yellow',
+      }[color] ??
+      'unspecified';
 
-  String get typeName {
-    return const {
-          1: 'shirts',
-          2: 'pants',
-          3: 'skirts',
-          4: 'dresses',
-          5: 'jackets',
-        }[type] ??
-        'unspecified';
-  }
+  String get typeName =>
+      const {
+        1: 'Shirts',
+        2: 'Pants',
+        3: 'Skirts',
+        4: 'Dresses',
+        5: 'Jackets',
+      }[type] ??
+      'unspecified';
 
-  String get categoryName {
-    return const {
-          1: 'casual',
-          2: 'traditional',
-          3: 'formal',
-          4: 'sports',
-        }[category] ??
-        'unspecified';
-  }
+  String get categoryName =>
+      const {
+        1: 'Casual wear',
+        2: 'Traditional wear',
+        3: 'Formal wear',
+        4: 'Sports wear',
+      }[category] ??
+      'unspecified';
 
   @override
   String toString() {

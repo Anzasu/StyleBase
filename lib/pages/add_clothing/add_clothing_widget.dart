@@ -1,4 +1,5 @@
 import 'package:style_base/backend/globals.dart';
+import 'package:style_base/backend/globals.dart' as globals;
 import 'package:style_base/backend/services/database_service.dart';
 import 'package:style_base/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:style_base/pages/action_start/action_start_widget.dart';
@@ -115,15 +116,9 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                             size: 45.0,
                                           ),
                                           onPressed: () {
+                                            resetCurrentClothingItem();
                                             context.pushNamed(
                                                 ActionStartWidget.routeName);
-                                            setState(() {
-                                              /*currentName = "";
-                                              currentCategoryID = 0;
-                                              currentColorID = 0;
-                                              currentSeasonID = 0;
-                                              currentTypeID = 0;*/
-                                            });
                                           },
                                         ),
                                       ),
@@ -162,25 +157,18 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                     ),
                                     FFButtonWidget(
                                       onPressed: () {
-                                        if (currentName == null ||
-                                            currentSeasonID == null ||
-                                            currentColorID == null ||
-                                            currentTypeID == null ||
-                                            currentCategoryID == null ||
-                                            currentName == "") return;
+                                        if (globals.currentClothingItem.name ==
+                                            "") return;
+
                                         _databaseService.addItem(
-                                            currentName,
-                                            currentSeasonID,
-                                            currentColorID,
-                                            currentTypeID,
-                                            currentCategoryID);
-                                        setState(() {
-                                          /*currentName = "";
-                                          currentCategoryID = 0;
-                                          currentColorID = 0;
-                                          currentSeasonID = 0;
-                                          currentTypeID = 0;*/
-                                        });
+                                            globals.currentClothingItem.name,
+                                            globals.currentClothingItem.season,
+                                            globals.currentClothingItem.color,
+                                            globals.currentClothingItem.type,
+                                            globals
+                                                .currentClothingItem.category);
+
+                                        resetCurrentClothingItem();
 
                                         context.pushNamed(
                                             ActionStartWidget.routeName);
@@ -232,7 +220,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                 TextFormField(
                                   onChanged: (value) {
                                     setState(() {
-                                      // currentName = value;
+                                      globals.setCurrentItemName(value);
                                     });
                                   },
                                   controller: _model.textController,
@@ -282,17 +270,8 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                   onChanged: (val) {
                                     _model.choiceChipsValues1 = val;
                                     setState(() {
-                                      /* if (val!.first == 'Summer') {
-                                        currentSeasonID = 1;
-                                      } else if (val!.first == 'Winter') {
-                                        currentSeasonID = 2;
-                                      } else if (val!.first == 'Fall') {
-                                        currentSeasonID = 3;
-                                      } else if (val!.first == 'Spring') {
-                                        currentSeasonID = 4;
-                                      } else {
-                                        currentSeasonID = 0;
-                                      }*/
+                                      globals.setCurrentItemSeason(
+                                          _model.choiceChipsValues1!.first);
                                     });
                                   },
                                   selectedChipStyle: ChipStyle(
@@ -322,7 +301,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
                                       _model.choiceChipsValueController1 ??=
                                           FormFieldController<List<String>>([]),
@@ -354,23 +333,10 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                     ChipData('Yellow')
                                   ],
                                   onChanged: (val) {
-                                    _model.choiceChipsValues1 = val;
+                                    _model.choiceChipsValues2 = val;
                                     setState(() {
-                                      /* if (val!.first == 'Red') {
-                                        currentSeasonID = 1;
-                                      } else if (val!.first == 'Black') {
-                                        currentSeasonID = 2;
-                                      } else if (val!.first == 'Blue') {
-                                        currentSeasonID = 3;
-                                      } else if (val!.first == 'White') {
-                                        currentSeasonID = 4;
-                                      } else if (val!.first == 'Green') {
-                                        currentSeasonID = 5;
-                                      } else if (val!.first == 'Yellow') {
-                                        currentSeasonID = 6;
-                                      } else {
-                                        currentSeasonID = 0;
-                                      }*/
+                                      globals.setCurrentItemColor(
+                                          _model.choiceChipsValues2!.first);
                                     });
                                   },
                                   selectedChipStyle: ChipStyle(
@@ -400,9 +366,9 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
-                                      _model.choiceChipsValueController1 ??=
+                                      _model.choiceChipsValueController2 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),
@@ -432,21 +398,10 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                     ChipData('Jackets')
                                   ],
                                   onChanged: (val) {
-                                    _model.choiceChipsValues1 = val;
+                                    _model.choiceChipsValues3 = val;
                                     setState(() {
-                                      /* if (val!.first == 'Shirts') {
-                                        currentSeasonID = 1;
-                                      } else if (val!.first == 'Pants') {
-                                        currentSeasonID = 2;
-                                      } else if (val!.first == 'Skirts') {
-                                        currentSeasonID = 3;
-                                      } else if (val!.first == 'Dresses') {
-                                        currentSeasonID = 4;
-                                      } else if (val!.first == 'Jackets') {
-                                        currentSeasonID = 5;
-                                      } else {
-                                        currentSeasonID = 0;
-                                      }*/
+                                      globals.setCurrentItemType(
+                                          _model.choiceChipsValues3!.first);
                                     });
                                   },
                                   selectedChipStyle: ChipStyle(
@@ -476,9 +431,9 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                         ),
                                   ),
                                   chipSpacing: 25.0,
-                                  multiselect: true,
+                                  multiselect: false,
                                   controller:
-                                      _model.choiceChipsValueController1 ??=
+                                      _model.choiceChipsValueController3 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),
@@ -507,20 +462,10 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                     ChipData('Sports wear')
                                   ],
                                   onChanged: (val) {
-                                    _model.choiceChipsValues1 = val;
+                                    _model.choiceChipsValues4 = val;
                                     setState(() {
-                                      /* if (val!.first == 'Casual wear') {
-                                        currentSeasonID = 1;
-                                      } else if (val!.first ==
-                                          'Traditional wear') {
-                                        currentSeasonID = 2;
-                                      } else if (val!.first == 'Formal wear') {
-                                        currentSeasonID = 3;
-                                      } else if (val!.first == 'Sports wear') {
-                                        currentSeasonID = 4;
-                                      } else {
-                                        currentSeasonID = 0;
-                                      }*/
+                                      globals.setCurrentItemCategory(
+                                          _model.choiceChipsValues4!.first);
                                     });
                                   },
                                   selectedChipStyle: ChipStyle(
@@ -552,7 +497,7 @@ class _AddClothingWidgetState extends State<AddClothingWidget> {
                                   chipSpacing: 25.0,
                                   multiselect: true,
                                   controller:
-                                      _model.choiceChipsValueController1 ??=
+                                      _model.choiceChipsValueController4 ??=
                                           FormFieldController<List<String>>([]),
                                   wrapped: true,
                                 ),

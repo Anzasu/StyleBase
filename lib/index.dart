@@ -12,3 +12,5 @@ export '/pages/add_clothing/add_clothing_widget.dart' show AddClothingWidget;
 export '/pages/search/search_widget.dart' show SearchWidget;
 export '/pages/update_clothing/update_clothing_widget.dart'
     show UpdateClothingWidget;
+export '/pages/search/search_widget.dart' show SearchWidget;
+export '/pages/search_result/search_result_widget.dart' show SearchResultWidget;
